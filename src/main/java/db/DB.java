@@ -1,10 +1,8 @@
-package ranslm_ware.com.db;
+package db;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class DB {
@@ -19,7 +17,7 @@ public class DB {
                 String url = properties.getProperty("dburl");
                conn = DriverManager.getConnection(url, properties);
             } catch (SQLException e) {
-                throw new DbException(e.getMessage());
+                throw new ranslm_ware.com.db.DbException(e.getMessage());
             }
         }
         return conn;
@@ -31,10 +29,31 @@ public class DB {
                 conn.close();
                 conn = null;
             } catch (SQLException e) {
-                throw new DbException(e.getMessage());
+                throw new ranslm_ware.com.db.DbException(e.getMessage());
             }
         }
     }
+    public static void closeStatement(Statement statement){
+        if(statement != null){
+            try{
+                statement.close();
+            } catch (SQLException e) {
+                throw new ranslm_ware.com.db.DbException(e.getMessage());
+            }
+        }
+
+    }
+    public static void closeResultSet(ResultSet resultSet){
+        if(resultSet != null){
+            try{
+                resultSet.close();
+            } catch (SQLException e) {
+                throw new ranslm_ware.com.db.DbException(e.getMessage());
+            }
+        }
+
+    }
+
 
     private static Properties properties(){
 
@@ -43,7 +62,7 @@ public class DB {
             properties.load(fs);
             return properties;
         } catch (IOException e) {
-            throw new DbException(e.getMessage());
+            throw new ranslm_ware.com.db.DbException(e.getMessage());
         }
     }
 }
