@@ -19,7 +19,10 @@ public class Main {
         System.out.println("--- Test 2: seller findByDepartment ---");
         Department dp = new Department(3, "");
         List<Seller> sellers = sellerDao.findByDepartment(dp);
-
         sellers.forEach(System.out::println);
+        System.out.println("--- Test 3: seller findAll ---");
+        List<Seller> findAll = sellerDao.findAll();
+        findAll.forEach(System.out::println);
+
     }
 }
