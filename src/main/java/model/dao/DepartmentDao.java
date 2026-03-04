@@ -2,7 +2,6 @@ package model.dao;
 
 import model.entities.Department;
 
-import javax.swing.*;
 import java.util.List;
 
 public interface DepartmentDao {

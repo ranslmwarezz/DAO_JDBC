@@ -1,5 +1,6 @@
 package application;
 
+import db.DB;
 import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.entities.Department;
@@ -11,7 +12,7 @@ public class Main2 {
 
         System.out.println("--- Test 1: department findById ---");
         DepartmentDao dep = DaoFactory.createDepartment();
-        Department dp = dep.findById(9);
+        Department dp = dep.findById(12);
         System.out.println(dp);
 
         System.out.println("--- Test 2: department insert ---");
@@ -25,7 +26,7 @@ public class Main2 {
         System.out.println("Done");
 
         System.out.println("--- Test 4: department deleteById ---");
-        dp.setId(9);
+        dp.setId(12);
         dep.deleteById(dp.getId());
         System.out.println("Done");
 
@@ -33,6 +34,6 @@ public class Main2 {
         List<Department> listD = dep.findAll();
         listD.forEach(System.out::println);
 
-
+        DB.closeConnection();
     }
 }

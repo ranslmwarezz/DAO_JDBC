@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class SellerDaoJDBC implements SellerDao {
 
-    private Connection conn;
+    private final Connection conn;
 
     public SellerDaoJDBC(Connection conn) {
         this.conn = conn;
@@ -70,7 +70,7 @@ public class SellerDaoJDBC implements SellerDao {
             int rowsAffected = st.executeUpdate();
 
             if (rowsAffected == 0) {
-                throw new DbException("Nenhuma linha foi atualizada.");
+                throw new DbException("No rows were updated.");
             }
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -148,8 +148,8 @@ public class SellerDaoJDBC implements SellerDao {
     @Override
     public List<Seller> findAll() {
 
-        PreparedStatement pt = null;
-        ResultSet rs = null;
+        PreparedStatement pt;
+        ResultSet rs;
         Map<Integer, Department> map = new HashMap<>();
         List<Seller> list = new ArrayList<>();
         try {

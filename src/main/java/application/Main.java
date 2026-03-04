@@ -1,5 +1,6 @@
 package application;
 
+import db.DB;
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
 import model.entities.Department;
@@ -14,7 +15,7 @@ public class Main {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
         System.out.println("--- Test 1: seller findById ---");
-        Seller seller = sellerDao.findById(5);
+        Seller seller = sellerDao.findById(13);
         System.out.println(seller);
 
         System.out.println("--- Test 2: seller findByDepartment ---");
@@ -41,5 +42,6 @@ public class Main {
         List<Seller> findAll = sellerDao.findAll();
         findAll.forEach(System.out::println);
 
+        DB.closeConnection();
     }
 }
